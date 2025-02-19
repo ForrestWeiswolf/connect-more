@@ -10,14 +10,20 @@ describe('BoardComponent', () => {
     await TestBed.configureTestingModule({
       imports: [BoardComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(BoardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('has six rows', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelectorAll('div.row').length).toBe(6);
+  });
+
+  it('has seven cells per row', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('div.row')?.querySelectorAll('span')?.length).toBe(7);
   });
 });
