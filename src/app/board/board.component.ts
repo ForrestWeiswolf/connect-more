@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 function create2dArray<T>(x: number, y: number, fill: T): T[][] {
   const result: T[][] = []
@@ -19,5 +19,14 @@ function create2dArray<T>(x: number, y: number, fill: T): T[][] {
   styleUrl: './board.component.css'
 })
 export class BoardComponent {
-  board = create2dArray(6, 7, false)
+  board = signal(create2dArray(6, 7, false))
+  fill(column: number) {
+    this.board.update(b => {
+      const rowToUpdate = b.findIndex((row, idx) =>
+        row[column] === false && (idx === b.length - 1 || b[idx + 1][column] === true)
+      );
+      b[rowToUpdate][column] = true
+      return b
+    })
+  }
 }
