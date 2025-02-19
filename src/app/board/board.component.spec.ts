@@ -33,13 +33,13 @@ describe('BoardComponent', () => {
 
     tick()
     fixture.detectChanges()
-    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('span')[0]?.textContent).toBe('true');
-    expect(compiled.querySelectorAll('div.row')[0].querySelectorAll('span')[0]?.textContent).toBe('false');
+    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('span')[0]?.textContent).toBe('•');
+    expect(compiled.querySelectorAll('div.row')[0].querySelectorAll('span')[0]?.textContent).toBe('.');
 
     compiled.querySelectorAll('div.row')[0].querySelectorAll('span')[0]?.click()
 
     tick()
     fixture.detectChanges()
-    expect(compiled.querySelectorAll('div.row')[4].querySelectorAll('span')[0]?.textContent).toBe('true');
+    expect(compiled.querySelectorAll('div.row')[4].querySelectorAll('span')[0]?.textContent).toBe('•');
   }));
 });
