@@ -1,4 +1,18 @@
-span.cell {
-  margin: 0.5em;
-  /* border: 1px solid black; */
+#board {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cell {
+  padding: 1em;
+  border: 1px solid black;
+}
+
+.cell.red {
+  background-color: red;
 }

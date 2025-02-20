@@ -24,22 +24,23 @@ describe('BoardComponent', () => {
 
   it('has seven cells per row', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('div.row')?.querySelectorAll('span')?.length).toBe(7);
+    expect(compiled.querySelector('div.row')?.querySelectorAll('.cell')?.length).toBe(7);
   });
 
   it('fills the last unfilled cell in a clicked column', fakeAsync(() => {
     const compiled = fixture.nativeElement as HTMLElement;
-    compiled.querySelectorAll('div.row')[0].querySelectorAll('span')[0]?.click()
+    compiled.querySelectorAll('div.row')[0].querySelectorAll<HTMLElement>('.cell')[0]?.click()
 
     tick()
     fixture.detectChanges()
-    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('span')[0]?.textContent).toBe('•');
-    expect(compiled.querySelectorAll('div.row')[0].querySelectorAll('span')[0]?.textContent).toBe('.');
 
-    compiled.querySelectorAll('div.row')[0].querySelectorAll('span')[0]?.click()
+    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('.cell')[0]?.className).toContain('red');
+    expect(compiled.querySelectorAll('div.row')[0].querySelectorAll('.cell')[0]?.className).not.toContain('red');
+
+    compiled.querySelectorAll('div.row')[0].querySelectorAll<HTMLElement>('div.cell')[0]?.click()
 
     tick()
     fixture.detectChanges()
-    expect(compiled.querySelectorAll('div.row')[4].querySelectorAll('span')[0]?.textContent).toBe('•');
+    expect(compiled.querySelectorAll('div.row')[4].querySelectorAll('.cell')[0]?.className).toContain('red');
   }));
 });
