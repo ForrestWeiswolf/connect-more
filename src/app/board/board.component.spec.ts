@@ -51,4 +51,17 @@ describe('BoardComponent', () => {
     expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('.cell')[0]?.className).toContain('red');
     expect(compiled.querySelectorAll('div.row')[4].querySelectorAll('.cell')[0]?.className).toContain('blue');
   }));
+
+  it('detects horizontal victory', fakeAsync(() => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    for (let i = 0; i < 4; i++) {
+      compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[i]?.click()
+      compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[0]?.click()
+    }
+
+    tick()
+    fixture.detectChanges()
+
+    expect(compiled.querySelector('h2')?.textContent).toBe('red wins!');
+  }));
 });
