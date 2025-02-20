@@ -38,9 +38,17 @@ describe('BoardComponent', () => {
     expect(compiled.querySelectorAll('div.row')[0].querySelectorAll('.cell')[0]?.className).not.toContain('red');
 
     compiled.querySelectorAll('div.row')[0].querySelectorAll<HTMLElement>('div.cell')[0]?.click()
+  }));
+
+  it('alternates colors', fakeAsync(() => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    compiled.querySelectorAll('div.row')[0].querySelectorAll<HTMLElement>('.cell')[0]?.click()
+
+    compiled.querySelectorAll('div.row')[0].querySelectorAll<HTMLElement>('div.cell')[0]?.click()
 
     tick()
     fixture.detectChanges()
-    expect(compiled.querySelectorAll('div.row')[4].querySelectorAll('.cell')[0]?.className).toContain('red');
+    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('.cell')[0]?.className).toContain('red');
+    expect(compiled.querySelectorAll('div.row')[4].querySelectorAll('.cell')[0]?.className).toContain('blue');
   }));
 });
