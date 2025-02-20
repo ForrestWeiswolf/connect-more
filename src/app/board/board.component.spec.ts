@@ -74,6 +74,8 @@ describe('BoardComponent', () => {
   describe('victory conditions', () => {
     it('detects horizontal victory', fakeAsync(() => {
       const compiled = fixture.nativeElement as HTMLElement;
+      expect(compiled.querySelector('#red-score')?.textContent).toBe('0');
+
       for (let i = 0; i < 3; i++) {
         compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[i]?.click()
         compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[0]?.click()
@@ -84,7 +86,7 @@ describe('BoardComponent', () => {
       tick()
       fixture.detectChanges()
 
-      expect(compiled.querySelector('h2')?.textContent).toBe('red wins!');
+      expect(compiled.querySelector('#red-score')?.textContent).toBe('1');
     }));
 
     it('detects vertical victory', fakeAsync(() => {
@@ -100,7 +102,7 @@ describe('BoardComponent', () => {
       tick()
       fixture.detectChanges()
 
-      expect(compiled.querySelector('h2')?.textContent).toBe('blue wins!');
+      expect(compiled.querySelector('#blue-score')?.textContent).toBe('1');
     }));
 
     it('detects left diagonal victory', fakeAsync(() => {
@@ -124,7 +126,7 @@ describe('BoardComponent', () => {
       tick()
       fixture.detectChanges()
 
-      expect(compiled.querySelector('h2')?.textContent).toBe('red wins!');
+      expect(compiled.querySelector('#red-score')?.textContent).toBe('1');
     }));
 
     it('detects right diagonal victory', fakeAsync(() => {
@@ -148,7 +150,24 @@ describe('BoardComponent', () => {
       tick()
       fixture.detectChanges()
 
-      expect(compiled.querySelector('h2')?.textContent).toBe('red wins!');
+      expect(compiled.querySelector('#red-score')?.textContent).toBe('1');
+    }));
+
+    it('counts multiple victories', fakeAsync(() => {
+      const compiled = fixture.nativeElement as HTMLElement;
+
+      compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[3]?.click()
+      compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[1]?.click()
+      for (let i = 0; i < 4; i++) {
+        compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[0]?.click()
+        compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[1]?.click()
+      }
+
+      tick()
+      fixture.detectChanges()
+
+      expect(compiled.querySelector('#blue-score')?.textContent).toBe('2');
+      expect(compiled.querySelector('#red-score')?.textContent).toBe('1');
     }));
   })
 });

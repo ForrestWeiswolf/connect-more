@@ -20,3 +20,11 @@
 .cell.blue {
   background-color: blue;
 }
+
+#red-score {
+  color: red;
+}
+
+#blue-score {
+  color: blue;
+}

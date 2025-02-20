@@ -30,21 +30,26 @@ export class BoardComponent {
     equal: (a, b) => a.flat().join(',') === b.flat().join(',')
   })
   player = signal(Color.red)
-  winner = computed<Color | null>(() => {
+  scores = computed<Record<Color, number>>(() => {
+    const result = { [Color.red]: 0, [Color.blue]: 0 }
+
     for (let i = 0; i < this.board().length; i++) {
       for (let j = 0; j < this.board()[0].length; j++) {
         const row = this.board()[i]
         const col = this.board().map(r => r[j])
         const lDiag = this.board().map((r, idx) => r[j + idx - i])
         const rDiag = this.board().map((r, idx) => r[j - idx + i])
+        const cell = this.board()[i][j]
         if (isWinningSlice(row.slice(j, j + GOAL)) || isWinningSlice(col.slice(i, i + GOAL))
           || isWinningSlice(lDiag.slice(i, i + GOAL)) || isWinningSlice(rDiag.slice(i, i + GOAL))) {
-          return this.board()[i][j]
+          if (cell !== null) {
+            result[cell] = result[cell] + 1
+          }
         }
       }
     }
 
-    return null
+    return result
   })
 
   play(column: number) {

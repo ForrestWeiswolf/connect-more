@@ -1,5 +1,6 @@
 <section id="board">
-  <h2>{{winner() ? winner() + " wins!" : '' }}</h2>
+  <div>Red: <span id="red-score">{{scores().red}}</span></div>
+  <div>Blue: <span id="blue-score">{{scores().blue}}</span></div>
 
   @for (row of board(); track $index) {
   <div class="row">
