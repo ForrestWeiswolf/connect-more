@@ -2,6 +2,7 @@ import { Component, computed, signal } from '@angular/core';
 
 enum Color { red = 'red', blue = 'blue' }
 type Cell = Color | null
+const GOAL = 4
 
 function create2dArray<T>(x: number, y: number, fill: T): T[][] {
   const result: T[][] = []
@@ -28,21 +29,10 @@ export class BoardComponent {
   player = signal(Color.red)
   winner = computed<Color | null>(() => {
     for (let i = 0; i < this.board().length; i++) {
-      let color: Cell = null;
-      let count = 0
       for (let j = 0; j < this.board()[0].length; j++) {
-        const cell = this.board()[i][j]
-        if (color === null) {
-          color = cell
-          count = 1
-        } else if (color === cell) {
-          count++
-          if (count === 4) {
-            return color
-          }
-        } else {
-          color = null
-          count = 0
+        const slice = this.board()[i].slice(j, j + GOAL)
+        if (slice.length === GOAL && slice[0] && slice.every(cell => cell === slice[0])) {
+          return slice[0]
         }
       }
     }
