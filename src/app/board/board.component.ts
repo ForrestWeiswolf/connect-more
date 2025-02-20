@@ -48,15 +48,18 @@ export class BoardComponent {
   })
 
   play(column: number) {
-    this.board.update(b => {
-      const rowToUpdate = b.findIndex((row, idx) =>
-        row[column] === null && (idx === b.length - 1 || b[idx + 1][column] !== null)
-      );
-      const newBoard = [...b].map(row => [...row])
-      newBoard[rowToUpdate][column] = this.player()
+    const rowToUpdate = this.board().findIndex((row, idx) =>
+      row[column] === null && (idx === this.board().length - 1 || this.board()[idx + 1][column] !== null)
+    );
 
-      return newBoard
-    })
-    this.player.set(this.player() === Color.red ? Color.blue : Color.red)
+    if (rowToUpdate >= 0) {
+      this.board.update(b => {
+        const newBoard = [...b].map(row => [...row])
+        newBoard[rowToUpdate][column] = this.player()
+
+        return newBoard
+      })
+      this.player.set(this.player() === Color.red ? Color.blue : Color.red)
+    }
   }
 }
