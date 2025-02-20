@@ -35,7 +35,10 @@ export class BoardComponent {
       for (let j = 0; j < this.board()[0].length; j++) {
         const row = this.board()[i]
         const col = this.board().map(r => r[j])
-        if (isWinningSlice(row.slice(j, j + GOAL)) || isWinningSlice(col.slice(i, i + GOAL))) {
+        const lDiag = this.board().map((r, idx) => r[j + idx - i])
+        const rDiag = this.board().map((r, idx) => r[j - idx + i])
+        if (isWinningSlice(row.slice(j, j + GOAL)) || isWinningSlice(col.slice(i, i + GOAL))
+          || isWinningSlice(lDiag.slice(i, i + GOAL)) || isWinningSlice(rDiag.slice(i, i + GOAL))) {
           return this.board()[i][j]
         }
       }
@@ -51,6 +54,7 @@ export class BoardComponent {
       );
       const newBoard = [...b].map(row => [...row])
       newBoard[rowToUpdate][column] = this.player()
+
       return newBoard
     })
     this.player.set(this.player() === Color.red ? Color.blue : Color.red)
