@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #252525;
+    color: #f5f5f5;
+  }
+}
+
+* {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}

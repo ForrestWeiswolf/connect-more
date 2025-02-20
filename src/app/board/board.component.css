@@ -42,3 +42,14 @@
 #blue-score {
   color: blue;
 }
+
+@media (prefers-color-scheme: dark) {
+  .cell {
+    border: 1px solid white;
+  }
+
+  .launch-button {
+    border: 1px solid white;
+    background-color: grey;
+  }
+}
