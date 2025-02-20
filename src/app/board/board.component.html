@@ -8,17 +8,17 @@
     </h2>
   </div>
 
-  <div class="row">
+  <div class="launch-buttons">
     @for (col of board()[0]; track $index) {
-    <div class="launch-button" role="button" (click)="play($index)">launch</div>
+      <div class="launch-button" role="button" (click)="play($index)">launch</div>
     }
   </div>
 
   @for (row of board(); track $index) {
-  <div class="row">
-    @for (cell of row; track $index) {
-    <div class="cell" class="{{cell}}"></div>
-    }
-  </div>
+    <div class="row">
+      @for (cell of row; track $index) {
+        <div class="cell" class="{{cell}}"></div>
+      }
+    </div>
   }
 </section>

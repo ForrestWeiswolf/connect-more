@@ -17,9 +17,9 @@ describe('BoardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('has six rows, plus the row of drop buttons', () => {
+  it('has six rows', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelectorAll<HTMLElement>('div.row').length).toBe(7);
+    expect(compiled.querySelectorAll<HTMLElement>('div.row').length).toBe(6);
   });
 
   it('has seven cells per row', () => {
@@ -34,7 +34,7 @@ describe('BoardComponent', () => {
     tick()
     fixture.detectChanges()
 
-    expect(compiled.querySelectorAll('div.row')[6].querySelectorAll('.cell')[0]?.className).toContain('red');
+    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('.cell')[0]?.className).toContain('red');
     expect(compiled.querySelectorAll('div.row')[0].querySelectorAll('.cell')[0]?.className).not.toContain('red');
 
     compiled.querySelectorAll('div.row')[0].querySelectorAll<HTMLElement>('div.cell')[0]?.click()
@@ -47,8 +47,8 @@ describe('BoardComponent', () => {
 
     tick()
     fixture.detectChanges()
-    expect(compiled.querySelectorAll('div.row')[6].querySelectorAll('.cell')[0]?.className).toContain('red');
-    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('.cell')[0]?.className).toContain('blue');
+    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('.cell')[0]?.className).toContain('red');
+    expect(compiled.querySelectorAll('div.row')[4].querySelectorAll('.cell')[0]?.className).toContain('blue');
   }));
 
   it('ignores invalid moves', fakeAsync(() => {
@@ -67,7 +67,7 @@ describe('BoardComponent', () => {
     tick()
     fixture.detectChanges()
 
-    expect(compiled.querySelectorAll('div.row')[6].querySelectorAll('.cell')[1]?.className).toContain('red');
+    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('.cell')[1]?.className).toContain('red');
   }))
 
   describe('victory conditions', () => {
