@@ -54,14 +54,32 @@ describe('BoardComponent', () => {
 
   it('detects horizontal victory', fakeAsync(() => {
     const compiled = fixture.nativeElement as HTMLElement;
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
       compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[i]?.click()
       compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[0]?.click()
     }
+
+    compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[3]?.click()
 
     tick()
     fixture.detectChanges()
 
     expect(compiled.querySelector('h2')?.textContent).toBe('red wins!');
+  }));
+
+  it('detects vertical victory', fakeAsync(() => {
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[3]?.click()
+    compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[1]?.click()
+    for (let i = 0; i < 3; i++) {
+      compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[0]?.click()
+      compiled.querySelector('div.row')?.querySelectorAll<HTMLElement>('.cell')[1]?.click()
+    }
+
+    tick()
+    fixture.detectChanges()
+
+    expect(compiled.querySelector('h2')?.textContent).toBe('blue wins!');
   }));
 });

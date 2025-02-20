@@ -30,12 +30,20 @@ export class BoardComponent {
   winner = computed<Color | null>(() => {
     for (let i = 0; i < this.board().length; i++) {
       for (let j = 0; j < this.board()[0].length; j++) {
-        const slice = this.board()[i].slice(j, j + GOAL)
+        const row = this.board()[i]
+        let slice = row.slice(j, j + GOAL)
+        if (slice.length === GOAL && slice[0] && slice.every(cell => cell === slice[0])) {
+          return slice[0]
+        }
+
+        const col = this.board().map(r => r[j])
+        slice = col.slice(i, i + GOAL)
         if (slice.length === GOAL && slice[0] && slice.every(cell => cell === slice[0])) {
           return slice[0]
         }
       }
     }
+
     return null
   })
 
