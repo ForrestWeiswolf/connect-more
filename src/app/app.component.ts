@@ -9,5 +9,5 @@ import { BoardComponent } from './board/board.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'connect-four';
+  title = 'connect-more';
 }
