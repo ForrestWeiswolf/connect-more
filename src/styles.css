@@ -5,13 +5,12 @@
     background-color: #252525;
     color: #f5f5f5;
   }
+
+  a {
+    color: #AAAAFF;
+  }
 }
 
 * {
   font-family: 'Times New Roman', Times, serif;
-}
-
-main {
-  display: flex;
-  justify-content: center;
 }
