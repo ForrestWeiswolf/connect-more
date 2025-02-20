@@ -16,6 +16,9 @@ function create2dArray<T>(x: number, y: number, fill: T): T[][] {
   return result
 }
 
+const isWinningSlice = (slice: Cell[]) => slice.length === GOAL && slice[0]
+  && slice.every(cell => cell === slice[0])
+
 @Component({
   selector: 'app-board',
   imports: [],
@@ -31,15 +34,9 @@ export class BoardComponent {
     for (let i = 0; i < this.board().length; i++) {
       for (let j = 0; j < this.board()[0].length; j++) {
         const row = this.board()[i]
-        let slice = row.slice(j, j + GOAL)
-        if (slice.length === GOAL && slice[0] && slice.every(cell => cell === slice[0])) {
-          return slice[0]
-        }
-
         const col = this.board().map(r => r[j])
-        slice = col.slice(i, i + GOAL)
-        if (slice.length === GOAL && slice[0] && slice.every(cell => cell === slice[0])) {
-          return slice[0]
+        if (isWinningSlice(row.slice(j, j + GOAL)) || isWinningSlice(col.slice(i, i + GOAL))) {
+          return this.board()[i][j]
         }
       }
     }
