@@ -1,6 +1,7 @@
 import { Component, computed, signal } from '@angular/core';
 
 enum Color { red = 'red', blue = 'blue' }
+enum Direction { up = 'up', down = 'down' }
 type Cell = Color | null
 const GOAL = 4
 
@@ -26,6 +27,7 @@ const isWinningSlice = (slice: Cell[]) => slice.length === GOAL && slice[0]
   styleUrl: './board.component.css'
 })
 export class BoardComponent {
+  direction = Direction
   board = signal(create2dArray<Cell>(6, 7, null), {
     equal: (a, b) => a.flat().join(',') === b.flat().join(',')
   })
@@ -52,10 +54,15 @@ export class BoardComponent {
     return result
   })
 
-  play(column: number) {
-    const rowToUpdate = this.board().findIndex((row, idx) =>
-      row[column] === null && (idx === this.board().length - 1 || this.board()[idx + 1][column] !== null)
-    );
+  play(column: number, direction: Direction) {
+    const rowToUpdate = direction === Direction.down ?
+      this.board().findIndex((row, idx) =>
+        row[column] === null
+        && (idx === this.board().length - 1 || this.board()[idx + 1][column] !== null)
+      ) : this.board().findLastIndex((row, idx) =>
+        row[column] === null
+        && (idx === 0 || this.board()[idx - 1][column] !== null)
+      )
 
     if (rowToUpdate >= 0) {
       this.board.update(b => {

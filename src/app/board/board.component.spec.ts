@@ -27,17 +27,27 @@ describe('BoardComponent', () => {
     expect(compiled.querySelectorAll('div.row')[1]?.querySelectorAll('.cell')?.length).toBe(7);
   });
 
-  it('fills the last unfilled cell in a clicked column', fakeAsync(() => {
+  it('top launch button fills the last unfilled cell from top of column', fakeAsync(() => {
     const compiled = fixture.nativeElement as HTMLElement;
+    compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
     compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
 
     tick()
     fixture.detectChanges()
 
-    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('.cell')[0]?.className).toContain('red');
-    expect(compiled.querySelectorAll('div.row')[0].querySelectorAll('.cell')[0]?.className).not.toContain('red');
+    expect(compiled.querySelectorAll('div.row')[4].querySelectorAll('.cell')[0]?.className).toContain('blue');
+  }));
 
-    compiled.querySelectorAll('div.row')[0].querySelectorAll<HTMLElement>('div.cell')[0]?.click()
+  it('bottom launch button fills the last unfilled cell from bottom of column', fakeAsync(() => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    // 7 top buttons, so 0th bottom button is 7th button
+    compiled.querySelectorAll<HTMLElement>('.launch-button')[7]?.click()
+    compiled.querySelectorAll<HTMLElement>('.launch-button')[7]?.click()
+
+    tick()
+    fixture.detectChanges()
+
+    expect(compiled.querySelectorAll('div.row')[1].querySelectorAll('.cell')[0]?.className).toContain('blue');
   }));
 
   it('alternates colors', fakeAsync(() => {
