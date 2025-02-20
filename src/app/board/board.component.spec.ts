@@ -17,9 +17,9 @@ describe('BoardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('has six rows', () => {
+  it('has seven rows', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelectorAll<HTMLElement>('div.row').length).toBe(6);
+    expect(compiled.querySelectorAll<HTMLElement>('div.row').length).toBe(7);
   });
 
   it('has seven cells per row', () => {
@@ -35,7 +35,7 @@ describe('BoardComponent', () => {
     tick()
     fixture.detectChanges()
 
-    expect(compiled.querySelectorAll('div.row')[4].querySelectorAll('.cell')[0]?.className).toContain('blue');
+    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('.cell')[0]?.className).toContain('blue');
   }));
 
   it('bottom launch button fills the last unfilled cell from bottom of column', fakeAsync(() => {
@@ -57,27 +57,27 @@ describe('BoardComponent', () => {
 
     tick()
     fixture.detectChanges()
-    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('.cell')[0]?.className).toContain('red');
-    expect(compiled.querySelectorAll('div.row')[4].querySelectorAll('.cell')[0]?.className).toContain('blue');
+    expect(compiled.querySelectorAll('div.row')[6].querySelectorAll('.cell')[0]?.className).toContain('red');
+    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('.cell')[0]?.className).toContain('blue');
   }));
 
   it('ignores invalid moves', fakeAsync(() => {
     const compiled = fixture.nativeElement as HTMLElement;
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
       compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
     }
 
-    // red attempts to play in full column
+    // blue attempts to play in full column
     compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
 
-    // it should still be red's turn
+    // it should still be blue's turn
     compiled.querySelectorAll<HTMLElement>('.launch-button')[1]?.click()
 
     tick()
     fixture.detectChanges()
 
-    expect(compiled.querySelectorAll('div.row')[5].querySelectorAll('.cell')[1]?.className).toContain('red');
+    expect(compiled.querySelectorAll('div.row')[6].querySelectorAll('.cell')[1]?.className).toContain('blue');
   }))
 
   describe('victory conditions', () => {

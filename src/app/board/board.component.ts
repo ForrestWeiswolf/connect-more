@@ -28,7 +28,7 @@ const isWinningSlice = (slice: Cell[]) => slice.length === GOAL && slice[0]
 })
 export class BoardComponent {
   direction = Direction
-  board = signal(create2dArray<Cell>(6, 7, null), {
+  board = signal(create2dArray<Cell>(7, 7, null), {
     equal: (a, b) => a.flat().join(',') === b.flat().join(',')
   })
   player = signal(Color.red)
