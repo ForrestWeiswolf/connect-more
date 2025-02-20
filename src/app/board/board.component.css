@@ -3,20 +3,25 @@
   flex-direction: column;
 }
 
+#scores {
+  display: flex;
+  justify-content: space-between;
+}
+
 .row {
   display: flex;
   flex-direction: row;
 }
 
 .cell {
-  width: 2.5em;
-  height: 2.5em;
+  width: 3.5em;
+  height: 3.5em;
   border: 1px solid black;
 }
 
-.drop-button {
-  width: 2.5em;
-  height: 2.5em;
+.launch-button {
+  width: 3.5em;
+  height: 3.5em;
   border: 1px dashed black;
   text-align: center;
   background-color: lightgray;

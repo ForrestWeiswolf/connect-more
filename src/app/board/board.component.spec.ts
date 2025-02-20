@@ -29,7 +29,7 @@ describe('BoardComponent', () => {
 
   it('fills the last unfilled cell in a clicked column', fakeAsync(() => {
     const compiled = fixture.nativeElement as HTMLElement;
-    compiled.querySelectorAll<HTMLElement>('.drop-button')[0]?.click()
+    compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
 
     tick()
     fixture.detectChanges()
@@ -42,8 +42,8 @@ describe('BoardComponent', () => {
 
   it('alternates colors', fakeAsync(() => {
     const compiled = fixture.nativeElement as HTMLElement;
-    compiled.querySelectorAll<HTMLElement>('.drop-button')[0]?.click()
-    compiled.querySelectorAll<HTMLElement>('.drop-button')[0]?.click()
+    compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
+    compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
 
     tick()
     fixture.detectChanges()
@@ -55,14 +55,14 @@ describe('BoardComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
 
     for (let i = 0; i < 6; i++) {
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[0]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
     }
 
     // red attempts to play in full column
-    compiled.querySelectorAll<HTMLElement>('.drop-button')[0]?.click()
+    compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
 
     // it should still be red's turn
-    compiled.querySelectorAll<HTMLElement>('.drop-button')[1]?.click()
+    compiled.querySelectorAll<HTMLElement>('.launch-button')[1]?.click()
 
     tick()
     fixture.detectChanges()
@@ -76,11 +76,11 @@ describe('BoardComponent', () => {
       expect(compiled.querySelector('#red-score')?.textContent).toBe('0');
 
       for (let i = 0; i < 3; i++) {
-        compiled.querySelectorAll<HTMLElement>('.drop-button')[i]?.click()
-        compiled.querySelectorAll<HTMLElement>('.drop-button')[0]?.click()
+        compiled.querySelectorAll<HTMLElement>('.launch-button')[i]?.click()
+        compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
       }
 
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[3]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[3]?.click()
 
       tick()
       fixture.detectChanges()
@@ -91,11 +91,11 @@ describe('BoardComponent', () => {
     it('detects vertical victory', fakeAsync(() => {
       const compiled = fixture.nativeElement as HTMLElement;
 
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[3]?.click()
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[1]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[3]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[1]?.click()
       for (let i = 0; i < 3; i++) {
-        compiled.querySelectorAll<HTMLElement>('.drop-button')[0]?.click()
-        compiled.querySelectorAll<HTMLElement>('.drop-button')[1]?.click()
+        compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
+        compiled.querySelectorAll<HTMLElement>('.launch-button')[1]?.click()
       }
 
       tick()
@@ -107,19 +107,19 @@ describe('BoardComponent', () => {
     it('detects left diagonal victory', fakeAsync(() => {
       const compiled = fixture.nativeElement as HTMLElement;
 
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[0]?.click()
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[0]?.click()
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[0]?.click()
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[1]?.click()
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[1]?.click()
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[2]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[1]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[1]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[2]?.click()
 
       for (let i = 0; i < 3; i++) {
-        compiled.querySelectorAll<HTMLElement>('.drop-button')[i]?.click()
-        compiled.querySelectorAll<HTMLElement>('.drop-button')[4]?.click()
+        compiled.querySelectorAll<HTMLElement>('.launch-button')[i]?.click()
+        compiled.querySelectorAll<HTMLElement>('.launch-button')[4]?.click()
       }
 
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[3]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[3]?.click()
 
       tick()
       fixture.detectChanges()
@@ -131,19 +131,19 @@ describe('BoardComponent', () => {
       const compiled = fixture.nativeElement as HTMLElement;
 
 
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[1]?.click()
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[2]?.click()
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[2]?.click()
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[3]?.click()
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[3]?.click()
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[3]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[1]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[2]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[2]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[3]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[3]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[3]?.click()
 
       for (let i = 0; i < 3; i++) {
-        compiled.querySelectorAll<HTMLElement>('.drop-button')[i]?.click()
-        compiled.querySelectorAll<HTMLElement>('.drop-button')[4]?.click()
+        compiled.querySelectorAll<HTMLElement>('.launch-button')[i]?.click()
+        compiled.querySelectorAll<HTMLElement>('.launch-button')[4]?.click()
       }
 
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[3]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[3]?.click()
 
       tick()
       fixture.detectChanges()
@@ -154,11 +154,11 @@ describe('BoardComponent', () => {
     it('counts multiple victories', fakeAsync(() => {
       const compiled = fixture.nativeElement as HTMLElement;
 
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[3]?.click()
-      compiled.querySelectorAll<HTMLElement>('.drop-button')[1]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[3]?.click()
+      compiled.querySelectorAll<HTMLElement>('.launch-button')[1]?.click()
       for (let i = 0; i < 4; i++) {
-        compiled.querySelectorAll<HTMLElement>('.drop-button')[0]?.click()
-        compiled.querySelectorAll<HTMLElement>('.drop-button')[1]?.click()
+        compiled.querySelectorAll<HTMLElement>('.launch-button')[0]?.click()
+        compiled.querySelectorAll<HTMLElement>('.launch-button')[1]?.click()
       }
 
       tick()

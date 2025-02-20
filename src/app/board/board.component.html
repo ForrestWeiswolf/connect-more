@@ -1,10 +1,16 @@
 <section id="board">
-  <div>Red: <span id="red-score">{{scores().red}}</span></div>
-  <div>Blue: <span id="blue-score">{{scores().blue}}</span></div>
+  <div id="scores">
+    <h2>
+      Red: <span id="red-score">{{scores().red}}</span>
+    </h2>
+    <h2>
+      Blue: <span id="blue-score">{{scores().blue}}</span>
+    </h2>
+  </div>
 
   <div class="row">
     @for (col of board()[0]; track $index) {
-      <div class="drop-button" role="button" (click)="play($index)">drop</div>
+    <div class="launch-button" role="button" (click)="play($index)">launch</div>
     }
   </div>
 
