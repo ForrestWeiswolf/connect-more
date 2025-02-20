@@ -9,8 +9,17 @@
 }
 
 .cell {
-  padding: 1em;
+  width: 2.5em;
+  height: 2.5em;
   border: 1px solid black;
+}
+
+.drop-button {
+  width: 2.5em;
+  height: 2.5em;
+  border: 1px dashed black;
+  text-align: center;
+  background-color: lightgray;
 }
 
 .cell.red {

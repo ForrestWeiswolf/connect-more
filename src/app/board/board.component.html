@@ -2,10 +2,16 @@
   <div>Red: <span id="red-score">{{scores().red}}</span></div>
   <div>Blue: <span id="blue-score">{{scores().blue}}</span></div>
 
+  <div class="row">
+    @for (col of board()[0]; track $index) {
+      <div class="drop-button" role="button" (click)="play($index)">drop</div>
+    }
+  </div>
+
   @for (row of board(); track $index) {
   <div class="row">
     @for (cell of row; track $index) {
-      <div class="cell" (click)="play($index)" class="{{cell}}"></div>
+    <div class="cell" class="{{cell}}"></div>
     }
   </div>
   }
